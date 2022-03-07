@@ -43,17 +43,6 @@ app.get('/hobbies/:id', async (req, res) => {
 })
 
 
-app.get('/hobbies/:id', async (req, res) => {
-    const id = Number(req.params.id)
-    const hobby = await prisma.hobby.findFirst({ where: { id: id }, include: { user: true } })
-    if (hobby) {
-        res.send(hobby)
-    }
-    else {
-        res.status(404).send({ error: 'Hobby not found' })
-    }
-})
-
 
 app.post('/users', async (req, res) => {
     const { name, photo, email } = req.body
